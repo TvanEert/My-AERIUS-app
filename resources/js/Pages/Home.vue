@@ -1,7 +1,7 @@
 <script setup>
 import Map from '@/Components/Map.vue';
-import SituationButton from '@/Components/SituationButton.vue';
 import Sidebar from '@/Components/Sidebar.vue';
+import SituationModal from '@/Components/SituationModal.vue';
 
 import '@/../css/stylesheet.css';
 </script>
@@ -10,6 +10,6 @@ import '@/../css/stylesheet.css';
     <div class="">
         <Sidebar/>
         <Map/>
-        <SituationButton/>
+        <SituationModal/>
     </div>
 </template>
