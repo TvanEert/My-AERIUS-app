@@ -33,54 +33,54 @@ const amountOfYears = 17;
 
                                     <!-- Put content here -->
                                     <div class="mt-5 md:col-span-2 md:mt-0">
-                                        <form action="#" method="POST">
-                                        <div class="shadow sm:overflow-hidden sm:rounded-md">
-                                            <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
-                                                <DialogTitle as="h3" class="text-lg font-medium leading-6 text-gray-900">Situatie aanmaken</DialogTitle>
+                                        <form :action="route('addSituation')" method="get">
+                                            <div class="shadow sm:overflow-hidden sm:rounded-md">
+                                                <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+                                                    <DialogTitle as="h3" class="text-lg font-medium leading-6 text-gray-900">Situatie aanmaken</DialogTitle>
 
-                                                <div class="flex rounded-md shadow-sm">
-                                                    <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">Naam</span>
-                                                    <input type="text" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="Situatie 1"/>
-                                                    <!-- delete icon -->
-                                                </div>
-                                                
-                                                <div class="flex">
-                                                    <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">Situatie</span>
-                                                    <select type="text" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                                        <option>Referentie</option>
-                                                        <option>Tijdelijk</option>
-                                                        <option>Beoogd</option>
-                                                        <option>Saldering</option>
-                                                    </select>
+                                                    <div class="flex rounded-md shadow-sm">
+                                                        <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">Naam</span>
+                                                        <input type="text" name="naam" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="Situatie 1"/>
+                                                        <!-- delete icon -->
+                                                    </div>
+                                                    
+                                                    <div class="flex">
+                                                        <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">Situatie</span>
+                                                        <select type="text" name="situatie" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                            <option>Referentie</option>
+                                                            <option>Tijdelijk</option>
+                                                            <option>Beoogd</option>
+                                                            <option>Saldering</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="flex">
+                                                        <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">Rekenjaar</span>
+                                                        <select type="text" name="rekenjaar" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                            <option v-for="n in Array.from({length: amountOfYears}, (v, i) => i + (new Date().getFullYear()-amountYearsBack))" :value="n">
+                                                                {{n}} 
+                                                            </option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="flex">
+                                                        <span class="inline-flex w-3/4 items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">Invoer voor</span>
+                                                        <select type="text" name="invoer" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                            <option>Emissiebronnen</option>
+                                                            <option>Gebouwen</option>
+                                                        </select>
+                                                    </div>
+
                                                 </div>
 
-                                                <div class="flex">
-                                                    <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">Rekenjaar</span>
-                                                    <select type="text" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                                        <option v-for="n in Array.from({length: amountOfYears}, (v, i) => i + (new Date().getFullYear()-amountYearsBack))" :value="n">
-                                                            {{n}} 
-                                                        </option>
-                                                    </select>
-                                                </div>
+                                                <div class="flex justify-end bg-gray-50 px-4 py-3 text-right sm:px-6">
+                                                    <button type="button" class="inline-flex justify-center rounded-md border border-gray-300 bg-white ml-3 px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" 
+                                                    @click="open = false" ref="cancelButtonRef">Cancel</button>
 
-                                                <div class="flex">
-                                                    <span class="inline-flex w-3/4 items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">Invoer voor</span>
-                                                    <select type="text" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                                        <option>Emissiebronnen</option>
-                                                        <option>Gebouwen</option>
-                                                    </select>
+                                                    <button type="submit" class="inline-flex justify-center rounded-md border border-transparent ml-3 bg-aerius-darkblue px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                                                    Save</button>
                                                 </div>
-
                                             </div>
-
-                                            <div class="flex justify-end bg-gray-50 px-4 py-3 text-right sm:px-6">
-                                                <button type="button" class="inline-flex justify-center rounded-md border border-gray-300 bg-white ml-3 px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" 
-                                                @click="open = false" ref="cancelButtonRef">Cancel</button>
-
-                                                <button type="submit" class="inline-flex justify-center rounded-md border border-transparent ml-3 bg-aerius-darkblue px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-                                                Save</button>
-                                            </div>
-                                        </div>
                                         </form>
                                     </div>
                                     

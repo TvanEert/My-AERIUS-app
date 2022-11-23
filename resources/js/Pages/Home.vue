@@ -8,8 +8,16 @@ import '@/../css/stylesheet.css';
 
 <template>
     <div class="">
-        <Sidebar/>
+        <Sidebar :situations="situations"/>
         <Map/>
         <SituationModal/>
     </div>
 </template>
+
+<script>
+export default{
+    props:{
+        situations: Array,
+    }
+}
+</script>
