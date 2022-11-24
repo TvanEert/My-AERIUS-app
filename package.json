@@ -23,5 +23,7 @@
     "dependencies": {
         "@headlessui/vue": "^1.7.4",
         "@heroicons/vue": "^2.0.13"
+        "ol": "^7.1.0",
+        "vue3-openlayers": "^0.1.70"
     }
 }

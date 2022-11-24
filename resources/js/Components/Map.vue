@@ -1,5 +1,28 @@
 <template>
-    <div class="flex place-content-center my-2 border-1">
-        <img src="https://upload.wikimedia.org/wikipedia/en/f/f8/Google_Maps_Android_11.png" width="350">
-    </div>
+    <ol-map :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" style="height:84vh">
+        <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom"
+        :projection="projection" />
+
+        <ol-tile-layer>
+            <ol-source-osm />
+        </ol-tile-layer>
+    </ol-map>
 </template>
+
+<script>
+import {ref} from 'vue'
+export default {
+    setup() {
+        const center = ref([5.2913, 52.1326])
+        const projection = ref('EPSG:4326')
+        const zoom = ref(8)
+        const rotation = ref(0)
+        return {
+            center,
+            projection,
+            zoom,
+            rotation
+        }
+    },
+}
+</script>

@@ -7,11 +7,9 @@ import '@/../css/stylesheet.css';
 </script>
 
 <template>
-    <div class="">
-        <Sidebar :situations="situations"/>
-        <Map/>
-        <SituationModal/>
-    </div>
+    <Sidebar :situations="situations"/>
+    <Map/>
+    <SituationModal/>
 </template>
 
 <script>
