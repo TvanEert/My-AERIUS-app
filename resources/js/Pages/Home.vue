@@ -7,9 +7,7 @@ import '@/../css/stylesheet.css';
 </script>
 
 <template>
-    <div class="">
         <Sidebar/>
         <Map/>
         <SituationButton/>
-    </div>
 </template>
