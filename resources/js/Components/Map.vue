@@ -1,40 +1,28 @@
 <template>
-    <div ref="map-root" class="w-60 h-60"></div>
-  </template>
-  
-  <script>
-    import View from 'ol/View'
-    import Map from 'ol/Map'
-    import TileLayer from 'ol/layer/Tile'
-    import OSM from 'ol/source/OSM'
-  
-    // importing the OpenLayers stylesheet is required for having
-    // good looking buttons!
-    import 'ol/ol.css'
-  
-    export default {
-      name: 'Map',
-      components: {},
-      props: {},
-      mounted() {
-        // this is where we create the OpenLayers map
-        new Map({
-          // the map will be created using the 'map-root' ref
-          target: this.$refs['map-root'],
-          layers: [
-            // adding a background tiled layer
-            new TileLayer({
-              source: new OSM() // tiles are served by OpenStreetMap
-            }),
-          ],
-  
-          // the map view will initially show the whole world
-          view: new View({
-            zoom: 0,
-            center: [0, 0],
-            constrainResolution: true
-          }),
-        })
-      },
-    }
-  </script>
+    <ol-map :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" style="height:84vh">
+        <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom"
+        :projection="projection" />
+
+        <ol-tile-layer>
+            <ol-source-osm />
+        </ol-tile-layer>
+    </ol-map>
+</template>
+
+<script>
+import {ref} from 'vue'
+export default {
+    setup() {
+        const center = ref([5.2913, 52.1326])
+        const projection = ref('EPSG:4326')
+        const zoom = ref(8)
+        const rotation = ref(0)
+        return {
+            center,
+            projection,
+            zoom,
+            rotation
+        }
+    },
+}
+</script>
