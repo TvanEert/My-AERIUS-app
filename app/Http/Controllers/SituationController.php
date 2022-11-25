@@ -18,12 +18,17 @@ class SituationController extends Controller
     }
 
     public function addSituation(Request $request){
-        $name = $_GET['naam'];
-        $situationType = $_GET['situatie'];
-        $calcYear = $_GET['rekenjaar'];
-        $inputFor = $_GET['invoer'];
+        $naam = $_GET['naam'];
+        $grootte = $_GET['grootte'];
+        $soort = $_GET['soort'];
+        $aantal = $_GET['aantal'];
 
-        $situationArray = ['name'=>$name, 'situationType'=>$situationType, 'calcYear'=>$calcYear, 'inputFor'=>$inputFor];
+        $situationArray = [
+            'naam'=>$naam,
+            'grootte'=>$grootte,
+            'soort'=>$soort,
+            'aantal'=>$aantal
+        ];
 
         $situation = new Situation($request);
         $situation->addSituation($situationArray);
