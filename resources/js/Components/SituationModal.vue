@@ -12,7 +12,7 @@ const amountOfYears = 17;
 <template>
     <div class="flex flex-wrap flex-col place-content-center">
         <a type="submit" @click="open = true" class="w-3/4 text-xl bg-blue-500 hover:bg-blue-700 text-white font-bold p-5 m-2 text-center rounded-full">
-            Situatie aanmaken
+            Berekening starten
         </a>
     </div>
 
@@ -36,49 +36,52 @@ const amountOfYears = 17;
                                         <form :action="route('addSituation')" method="get">
                                             <div class="shadow sm:overflow-hidden sm:rounded-md">
                                                 <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
-                                                    <DialogTitle as="h3" class="text-lg font-medium leading-6 text-gray-900">Situatie aanmaken</DialogTitle>
+                                                    <DialogTitle as="h3" class="text-lg font-medium leading-6 text-gray-900">Berekening starten</DialogTitle>
 
                                                     <div class="flex rounded-md shadow-sm">
-                                                        <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">Naam</span>
-                                                        <input type="text" name="naam" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="Situatie 1"/>
-                                                        <!-- delete icon -->
+                                                        <span class="basis-2/6 inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">Naam</span>
+                                                        <input type="text" name="naam" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="Berekening 1" required/>
                                                     </div>
                                                     
                                                     <div class="flex">
-                                                        <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">Situatie</span>
-                                                        <select type="text" name="situatie" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                                            <option>Referentie</option>
-                                                            <option>Tijdelijk</option>
-                                                            <option>Beoogd</option>
-                                                            <option>Saldering</option>
+                                                        <span class="basis-2/6 inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">Stalsoort</span>
+                                                        <select type="text" name="grootte" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                            <option>Klein</option>
+                                                            <option>Middel</option>
+                                                            <option>Groot</option>
                                                         </select>
                                                     </div>
 
                                                     <div class="flex">
+                                                        <span class="basis-2/6 inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">Diersoort</span>
+                                                        <select type="text" name="soort" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                            <option>Varken</option>
+                                                            <option>Koe</option>
+                                                            <option>Kip</option>
+                                                            <option>Schaap</option>
+                                                            <option>Geit</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="flex rounded-md shadow-sm">
+                                                        <span class="basis-2/6 inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">Aantal</span>
+                                                        <input type="number" min="1" name="aantal" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="0" required/>
+                                                    </div>
+
+                                                    <!--<div class="flex">
                                                         <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">Rekenjaar</span>
                                                         <select type="text" name="rekenjaar" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                             <option v-for="n in Array.from({length: amountOfYears}, (v, i) => i + (new Date().getFullYear()-amountYearsBack))" :value="n">
                                                                 {{n}} 
                                                             </option>
                                                         </select>
-                                                    </div>
-
-                                                    <div class="flex">
-                                                        <span class="inline-flex w-3/4 items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">Invoer voor</span>
-                                                        <select type="text" name="invoer" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                                            <option>Emissiebronnen</option>
-                                                            <option>Gebouwen</option>
-                                                        </select>
-                                                    </div>
+                                                    </div>-->
 
                                                 </div>
 
-                                                <div class="flex justify-end bg-gray-50 px-4 py-3 text-right sm:px-6">
-                                                    <button type="button" class="inline-flex justify-center rounded-md border border-gray-300 bg-white ml-3 px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" 
-                                                    @click="open = false" ref="cancelButtonRef">Cancel</button>
-
+                                                <div class="flex bg-gray-50 px-4 py-3 text-right sm:px-6">
                                                     <button type="submit" class="inline-flex justify-center rounded-md border border-transparent ml-3 bg-aerius-darkblue px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-                                                    Save</button>
+                                                    Bereken</button>
                                                 </div>
                                             </div>
                                         </form>
