@@ -1,18 +1,54 @@
 <script>
 import { ref, VueElement } from 'vue'
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
+import axios from 'axios'
+import http from 'http'
+import fs from 'fs'
 </script>
 
 <script setup>
 const open = ref(false)
 const amountYearsBack = 3;
 const amountOfYears = 17;
+
+function sendCalculation(){
+    /*axios.get('https://connect.aerius.nl/api/',{
+        params: {
+            naam: 'Berekening 1',
+            grootte: 'Klein',
+            soort: 'Koe',
+            aantal: 5
+        }
+    }).then(function (response){
+        console.log('response', response);
+        response.data.pipe(fs.createWriteStream(''));
+    }).catch(function (error){
+        console.log('error', error);
+    }).finally(function (){
+        console.log('finish');
+    });*/
+
+    axios({
+        method: 'get',
+        url: 'https://connect.aerius.nl/api/',
+    }).then(function (response){
+        console.log(response);
+        response.data.pipe(fs.createWriteStream(''));
+    }).catch(function (error){
+        console.log('error', error);
+    }).finally(function (){
+        console.log('finish');
+    });
+}
 </script>
 
 <template>
     <div class="flex flex-wrap flex-col place-content-center">
         <a type="submit" @click="open = true" class="w-3/4 text-xl bg-blue-500 hover:bg-blue-700 text-white font-bold p-5 m-2 text-center rounded-full">
             Berekening starten
+        </a>
+        <a type="submit" @click="sendCalculation()" class="w-3/4 text-xl bg-blue-500 hover:bg-blue-700 text-white font-bold p-5 m-2 text-center rounded-full">
+            Test
         </a>
     </div>
 
