@@ -23,7 +23,7 @@ export default{
             <span></span>
         </div>
     </div>
-    <div class="flex absolute pt-16 pl-8 top-15 h-full w-[80%] bg-aerius-lightblue ease-in duration-300 translate-x-[-100%] opacity-75" id="sidebar">
+    <div class="flex absolute pt-16 pl-8 top-15 h-[84%] w-[80%] bg-aerius-lightblue ease-in duration-300 translate-x-[-100%] opacity-75" id="sidebar">
         <ul>
             <h1 class="font-bold text-white text-3xl mb-8 mt-3">Recente Berekening</h1>
             <hr/>
