@@ -4,20 +4,17 @@ import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } fro
 </script>
 
 <script setup>
-const open = ref(false)
-const amountYearsBack = 3;
-const amountOfYears = 17;
+var openSituation = ref(false);
 </script>
 
 <template>
     <div class="flex flex-wrap flex-col place-content-center">
-        <a type="submit" @click="open = true" class="w-3/4 text-xl bg-blue-500 hover:bg-blue-700 text-white font-bold p-5 m-2 text-center rounded-full">
+        <a type="submit" @click="openSituation = true" class="w-3/4 text-xl bg-blue-500 hover:bg-blue-700 text-white font-bold p-5 m-2 text-center rounded-full">
             Berekening starten
         </a>
     </div>
-
-    <TransitionRoot as="template" :show="open">
-        <Dialog as="div" class="relative z-10" @close="open = false">
+    <TransitionRoot as="template" :show="openSituation">
+        <Dialog as="div" class="relative z-10" @close="openSituation = false">
             <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0" enter-to="opacity-100" leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
                 <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
             </TransitionChild>
@@ -68,6 +65,13 @@ const amountOfYears = 17;
                                                         <input type="number" min="1" name="aantal" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="0" required/>
                                                     </div>
 
+                                                    <div class="flex rounded-md shadow-sm">
+                                                        <input type="text" name="locatie" class="w-7/12 rounded-none rounded-l-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="0, 0" required/>
+                                                        <a @click="openSituation= false" class="w-5/12 grow m-0 rounded-r-md border border-transparent bg-aerius-darkblue px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none sm:w-auto sm:text-sm">
+                                                            Kies locatie
+                                                        </a>
+                                                    </div>
+
                                                     <!--<div class="flex">
                                                         <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">Rekenjaar</span>
                                                         <select type="text" name="rekenjaar" class="w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
@@ -81,7 +85,8 @@ const amountOfYears = 17;
 
                                                 <div class="flex bg-gray-50 px-4 py-3 text-right sm:px-6">
                                                     <button type="submit" class="inline-flex justify-center rounded-md border border-transparent ml-3 bg-aerius-darkblue px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-                                                    Bereken</button>
+                                                        Bereken
+                                                    </button>
                                                 </div>
                                             </div>
                                         </form>
