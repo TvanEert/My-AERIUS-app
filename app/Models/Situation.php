@@ -23,6 +23,9 @@ class Situation extends Model
     }
 
     public function addSituation($currSituation){
+        if(count($this->situations) == 5){
+            array_shift($this->situations);
+        }
         array_push($this->situations, $currSituation);
     }
 
