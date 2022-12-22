@@ -18,6 +18,7 @@ use App\Http\Controllers\SituationController;
 
 Route::get('/', [SituationController::class, 'getSituations'])->name('getSituations');
 Route::get('/addSituation', [SituationController::class, 'addSituation'])->name('addSituation');
+Route::get('/deleteSituation/{index}', [SituationController::class, 'deleteSituation'])->name('deleteSituation');
 
 Route::get('/welcome', function () {
     return Inertia::render('Welcome', [
