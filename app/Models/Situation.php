@@ -29,6 +29,10 @@ class Situation extends Model
         array_push($this->situations, $currSituation);
     }
 
+    public function deleteSituation($name){
+            unset($this->situations[array_search($name, array_column($this->situations, 'naam'))]);
+    }
+
     public function saveSession($request){
         $currentSession = $this->situations;
         $oldSession = $request->session()->get('situations');
