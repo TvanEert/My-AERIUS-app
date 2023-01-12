@@ -23,18 +23,10 @@ export default{
             <span></span>
         </div>
     </div>
-    <div class="flex absolute pt-16 pl-8 top-15 h-full w-[80%] bg-aerius-lightblue ease-in duration-300 translate-x-[-100%] opacity-75" id="sidebar">
+    <div class="flex absolute pt-16 pl-8 top-15 h-[84%] w-[80%] bg-aerius-lightblue ease-in duration-300 translate-x-[-100%] opacity-75" id="sidebar">
         <ul>
-            <li class="font-bold text-white text-2xl mb-5">
-                <a :href="route('')">
-                    Recente berekeningen
-                </a>
-            </li>
-            <li class="font-bold text-white text-2xl mb-5">
-                <a :href="route('')">
-                    Instellingen
-                </a>
-            </li>
+            <h1 class="font-bold text-white text-3xl mb-8 mt-3">Recente Berekening</h1>
+            <hr/>
             <template v-if="situations.length > 0">
                 <hr/>
                 <h1 class="font-bold text-white text-3xl mb-8 mt-3">Situations</h1>
