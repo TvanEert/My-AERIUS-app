@@ -23,7 +23,14 @@ class Situation extends Model
     }
 
     public function addSituation($currSituation){
+        if(count($this->situations) == 5){
+            array_shift($this->situations);
+        }
         array_push($this->situations, $currSituation);
+    }
+
+    public function deleteSituation($name){
+            unset($this->situations[array_search($name, array_column($this->situations, 'naam'))]);
     }
 
     public function saveSession($request){
