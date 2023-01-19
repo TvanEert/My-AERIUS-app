@@ -4,17 +4,21 @@ import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } fro
 </script>
 
 <script setup>
-var openSituation = ref(false);
+var toggleModal = ref(false);
+
+function toggleSituationModal(value){
+    toggleModal.value = value;
+};
 </script>
 
 <template>
     <div class="flex flex-wrap flex-col place-content-center">
-        <a type="submit" @click="openSituation = true" class="w-3/4 text-xl bg-blue-500 hover:bg-blue-700 text-white font-bold p-5 m-2 text-center rounded-full">
+        <a type="submit" @click="toggleSituationModal(true)" class="w-3/4 text-xl bg-blue-500 hover:bg-blue-700 text-white font-bold p-5 m-2 text-center rounded-full">
             Berekening starten
         </a>
     </div>
-    <TransitionRoot as="template" :show="openSituation">
-        <Dialog as="div" class="relative z-10" @close="openSituation = false">
+    <TransitionRoot as="template" :show="toggleModal">
+        <Dialog as="div" class="relative z-10" @close="toggleModal = false">
             <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0" enter-to="opacity-100" leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
                 <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
             </TransitionChild>
@@ -67,7 +71,7 @@ var openSituation = ref(false);
 
                                                     <div class="flex rounded-md shadow-sm">
                                                         <input type="text" name="locatie" class="w-7/12 rounded-none rounded-l-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="0, 0" required/>
-                                                        <a @click="openSituation= false" class="w-5/12 grow m-0 rounded-r-md border border-transparent bg-aerius-darkblue px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none sm:w-auto sm:text-sm">
+                                                        <a @click="toggleSituationModal(false)" class="w-5/12 grow m-0 rounded-r-md border border-transparent bg-aerius-darkblue px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none sm:w-auto sm:text-sm">
                                                             Kies locatie
                                                         </a>
                                                     </div>
