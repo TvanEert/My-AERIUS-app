@@ -1,14 +1,18 @@
 <script>
 import { ref, VueElement } from 'vue'
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
+
+export default {
+    methods: {
+        toggleSituationModal(value){
+            console.log(this.toggleModal);
+        }
+    }
+}
 </script>
 
 <script setup>
 var toggleModal = ref(false);
-
-function toggleSituationModal(value){
-    toggleModal.value = value;
-};
 </script>
 
 <template>
