@@ -36,4 +36,12 @@ class SituationController extends Controller
 
         return redirect()->route('getSituations');
     }
+
+    public function deleteSituation(Request $request, $currSituation){
+        $situation = new Situation($request);
+        $situation->deleteSituation($currSituation);
+        $situation->saveSession($request);
+
+        return redirect()->route('getSituations');
+    }
 }
