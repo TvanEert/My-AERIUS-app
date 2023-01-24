@@ -3,20 +3,8 @@
     
         <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" :projection="projection" />
     
-        <ol-swipe-control ref="swipeControl" v-if="layerList.length > 0" :layerList="layerList" />
-    
-        <ol-layerswitcherimage-control />
-    
-        <ol-zone-control :zones="zones" :projection="projection" :layer="jawgLayer.tileLayer" v-if="jawgLayer != null">
-    
-        </ol-zone-control>
-    
         <ol-tile-layer ref="osmLayer" title="OSM">
             <ol-source-osm />
-        </ol-tile-layer>
-    
-        <ol-tile-layer ref="jawgLayer" title="JAWG">
-            <ol-source-xyz crossOrigin='anonymous' url="https://c.tile.jawg.io/jawg-dark/{z}/{x}/{y}.png?access-token=87PWIbRaZAGNmYDjlYsLkeTVJpQeCfl2Y61mcHopxXqSdxXExoTLEv7dwqBwSWuJ" />
         </ol-tile-layer>
     
         <ol-control-bar>
@@ -62,47 +50,7 @@
             </ol-style>
         </ol-interaction-select>
     
-        <ol-vector-layer title="AIRPORTS" preview="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/src/assets/tr.png">
-            <ol-source-vector ref="cities" url="https://raw.githubusercontent.com/alpers/Turkey-Maps-GeoJSON/master/tr-cities-airports.json" :format="geoJson" :projection="projection">
-    
-                <ol-interaction-modify v-if="drawEnable" @modifyend="modifyend" @modifystart="modifystart">
-    
-                </ol-interaction-modify>
-    
-                <ol-interaction-draw v-if="drawEnable" :type="drawType" @drawend="drawend" @drawstart="drawstart">
-    
-                </ol-interaction-draw>
-    
-                <ol-interaction-snap v-if="drawEnable" />
-    
-            </ol-source-vector>
-    
-            <ol-style>
-                <ol-style-stroke color="red" :width="2"></ol-style-stroke>
-                <ol-style-fill color="rgba(255,255,255,0.1)"></ol-style-fill>
-                <ol-style-circle :radius="7">
-                    <ol-style-fill color="blue"></ol-style-fill>
-                </ol-style-circle>
-            </ol-style>
-        </ol-vector-layer>
-    
-        <ol-vector-layer :updateWhileAnimating="true" :updateWhileInteracting="true" title="STAR" preview="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/src/assets/star.png">
-            <ol-source-vector ref="vectorsource">
-    
-                <ol-animation-shake :duration="2000" :repeat="5">
-                    <ol-feature v-for="index in 20" :key="index" :properties="{'id':index}">
-                        <ol-geom-point :coordinates="[getRandomInRange(24,45,3),getRandomInRange(35,41,3)]"></ol-geom-point>
-    
-                        <ol-style>
-                            <ol-style-icon :src="starIcon" :scale="0.1"></ol-style-icon>
-                        </ol-style>
-                    </ol-feature>
-                </ol-animation-shake>
-    
-            </ol-source-vector>
-    
-        </ol-vector-layer>
-    
+        <!-- This code part allows for the creation of markers of the cluster variety -->
         <ol-animated-clusterlayer :animationDuration="500" :distance="40" title="CLUSTER" preview="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/src/assets/cluster.png">
     
             <ol-source-vector ref="vectorsource">
@@ -128,40 +76,13 @@
     
         </ol-animated-clusterlayer>
     
-        <ol-overlay :position="selectedCityPosition" v-if="selectedCityName !='' && !drawEnable">
+        <!--<ol-overlay :position="selectedCityPosition" v-if="selectedCityName !='' && !drawEnable">
             <template v-slot="slotProps">
                 <div class="overlay-content">
                     {{selectedCityName}} {{slotProps}}
                 </div>
             </template>
-        </ol-overlay>
-    
-        <ol-vector-layer>
-            <ol-source-vector>
-                <ol-feature ref="animationPath">
-                    <ol-geom-line-string :coordinates="path"></ol-geom-line-string>
-                    <ol-style-flowline color="red" color2="yellow" :width="10" :width2="10" :arrow="1"  />
-                </ol-feature>
-                <ol-animation-path v-if="animationPath" :path="animationPath.feature" :duration="4000" :repeat="10">
-    
-                    <ol-feature>
-                        <ol-geom-point :coordinates="path[0]"></ol-geom-point>
-                        <ol-style>
-                            <ol-style-circle :radius="10">
-                                <ol-style-fill color="blue"></ol-style-fill>
-                                <ol-style-stroke color="blue" :width="2"></ol-style-stroke>
-                            </ol-style-circle>
-                        </ol-style>
-    
-                    </ol-feature>
-                </ol-animation-path>
-            </ol-source-vector>
-    
-        </ol-vector-layer>
-        
-        <ol-webglpoints-layer :style="webglPointsStyle">
-            <ol-source-webglpoints :format="geoJson" url="https://openlayers.org/en/latest/examples/data/geojson/world-cities.geojson" />
-        </ol-webglpoints-layer>
+        </ol-overlay>-->
     </ol-map>
     </template>
     <script>
@@ -296,7 +217,6 @@
             }
     
             const swipeControl = ref(null)
-            const jawgLayer = ref(null)
             const osmLayer = ref(null)
             const layerList = ref([])
             const path = ref([
@@ -326,7 +246,6 @@
     
             onMounted(() => {
     
-                layerList.value.push(jawgLayer.value.tileLayer);
                 layerList.value.push(osmLayer.value.tileLayer);
                 console.log(layerList.value)
                 console.log(animationPath.value)
@@ -397,7 +316,6 @@
                 drawEnable,
                 drawType,
                 layerList,
-                jawgLayer,
                 swipeControl,
                 osmLayer,
                 starIcon,
