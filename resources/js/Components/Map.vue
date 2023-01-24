@@ -1,5 +1,5 @@
 <template>
-    <ol-map ref="map" :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" style="height:800px">
+    <ol-map ref="map" :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" style="height:84vh">
     
         <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" :projection="projection" />
     
@@ -7,33 +7,18 @@
             <ol-source-osm />
         </ol-tile-layer>
     
-        <ol-control-bar>
-            <ol-control-toggle html="<i class='fas fa-map-marker'></i>" className="edit" title="Point" :onToggle="(active)=>changeDrawType(active,'Point')" />
-            <ol-control-toggle html="<i class='fas fa-draw-polygon'></i>" className="edit" title="Polygon" :onToggle="(active)=>changeDrawType(active,'Polygon')" />
-            <ol-control-toggle html="<i class='fas fa-circle'></i>" className="edit" title="Circle" :onToggle="(active)=>changeDrawType(active,'Circle')" />
-            <ol-control-toggle html="<i class='fas fa-grip-lines'></i>" className="edit" title="LineString" :onToggle="(active)=>changeDrawType(active,'LineString')" />
-            <ol-control-videorecorder @stop="videoStopped">
+        <ol-mouseposition-control />    <!-- Shows coördinates at the top -->
+        <ol-scaleline-control />        <!-- Shows distance relativity on the map-->
+
+        <!--<ol-fullscreen-control />                                                                       Sets map to fullscreen-->
+        <!--<ol-rotate-control />                                                                           Resets rotation back to default -->
+        <!--<ol-zoom-control />                                                                             Zoom - and + buttons -->
+        <!--<ol-zoomslider-control />                                                                       Zoom slider -->
+        <!--<ol-zoomtoextent-control :extent="[23.906,42.812,46.934,34.597]" tipLabel="Fit to Turkey" />    E button, it centers on turkey -->
     
-            </ol-control-videorecorder>
-            <ol-control-printdialog />
-        </ol-control-bar>
-    
-        <ol-mouseposition-control />
-        <ol-fullscreen-control />
-        <ol-overviewmap-control>
-            <ol-tile-layer>
-                <ol-source-osm />
-            </ol-tile-layer>
-        </ol-overviewmap-control>
-    
-        <ol-scaleline-control />
-        <ol-rotate-control />
-        <ol-zoom-control />
-        <ol-zoomslider-control />
-        <ol-zoomtoextent-control :extent="[23.906,42.812,46.934,34.597]" tipLabel="Fit to Turkey" />
-    
-        <ol-context-menu :items="contextMenuItems" />
-        <ol-interaction-dragrotatezoom />
+        <ol-context-menu :items="contextMenuItems" /> <!-- ? -->
+
+        <!-- Selecting of a cluster and turning it into a yellow marker -->
         <ol-interaction-clusterselect @select="featureSelected" :pointRadius="20">
             <ol-style>
                 <ol-style-stroke color="green" :width="5"></ol-style-stroke>
@@ -42,6 +27,7 @@
             </ol-style>
         </ol-interaction-clusterselect>
     
+        <!-- ? -->
         <ol-interaction-select @select="featureSelected" :condition="selectCondition" :filter="selectInteactionFilter" v-if="!drawEnable">
             <ol-style>
                 <ol-style-stroke color="green" :width="10"></ol-style-stroke>
@@ -75,14 +61,6 @@
             </ol-style>
     
         </ol-animated-clusterlayer>
-    
-        <!--<ol-overlay :position="selectedCityPosition" v-if="selectedCityName !='' && !drawEnable">
-            <template v-slot="slotProps">
-                <div class="overlay-content">
-                    {{selectedCityName}} {{slotProps}}
-                </div>
-            </template>
-        </ol-overlay>-->
     </ol-map>
     </template>
     <script>
@@ -96,9 +74,9 @@
     import starIcon from '@/../assets/star.png'
     export default {
         setup() {
-            const center = ref([34, 39.13])
+            const center = ref([5.2913, 52.1326])
             const projection = ref('EPSG:4326')
-            const zoom = ref(6)
+            const zoom = ref(8)
             const rotation = ref(0)
     
             const format = inject('ol-format');
