@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+use App\Http\Controllers\SituationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,13 +16,9 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function(){
-    return Inertia::render('Home');
-});
-
-Route::get('/test2', function(){
-    return Inertia::render('Home');
-})->name('test2');
+Route::get('/', [SituationController::class, 'getSituations'])->name('getSituations');
+Route::get('/addSituation', [SituationController::class, 'addSituation'])->name('addSituation');
+Route::get('/deleteSituation/{index}', [SituationController::class, 'deleteSituation'])->name('deleteSituation');
 
 Route::get('/welcome', function () {
     return Inertia::render('Welcome', [
