@@ -41,7 +41,7 @@
     
             <ol-source-vector ref="vectorsource">
                 <ol-feature>
-                    
+
                 </ol-feature>
             </ol-source-vector>
     
@@ -73,9 +73,9 @@
     import starIcon from '@/../assets/star.png'
     export default {
         setup() {
-            const center = ref([5.2913, 52.1326])
-            const projection = ref('EPSG:4326')
-            const zoom = ref(8)
+            const center = ref([585700.3527781224, 6864562.9404685255]) //Coordinates for the netherlands with EPSG:3857
+            const projection = ref('EPSG:3857')
+            const zoom = ref(7)
             const rotation = ref(0)
     
             const format = inject('ol-format');
