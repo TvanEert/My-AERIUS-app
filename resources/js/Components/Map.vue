@@ -40,9 +40,8 @@
         <ol-animated-clusterlayer :animationDuration="500" :distance="40" title="CLUSTER" preview="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/src/assets/cluster.png">
     
             <ol-source-vector ref="vectorsource">
-                <ol-feature v-for="index in 500" :key="index">
-                    <ol-geom-point :coordinates="[getRandomInRange(24,45,3),getRandomInRange(35,41,3)]"></ol-geom-point>
-    
+                <ol-feature>
+                    
                 </ol-feature>
             </ol-source-vector>
     
