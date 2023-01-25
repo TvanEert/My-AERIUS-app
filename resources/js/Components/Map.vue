@@ -172,102 +172,18 @@
     
             }
     
-            const drawstart = (event) => {
-                console.log(event)
-    
-            }
-    
-            const drawend = (event) => {
-                console.log(event)
-            }
-    
-            const modifystart = (event) => {
-                console.log(event)
-    
-            }
-    
-            const modifyend = (event) => {
-                console.log(event)
-            }
-    
-            const videoStopped = (event) => {
-                console.log(event)
-            }
-    
             const swipeControl = ref(null)
             const osmLayer = ref(null)
             const layerList = ref([])
-            const path = ref([
-                [
-                    25.6064453125,
-                    44.73302734375001
-                ],
-                [
-                    27.759765625,
-                    44.75500000000001
-                ],
-                [
-                    28.287109375,
-                    43.32677734375001
-                ],
-                [
-                    30.55029296875,
-                    46.40294921875001
-                ],
-                [
-                    31.69287109375,
-                    43.04113281250001
-                ]
-    
-            ])
+
             const animationPath = ref(null);
     
             onMounted(() => {
-    
                 layerList.value.push(osmLayer.value.tileLayer);
                 console.log(layerList.value)
                 console.log(animationPath.value)
             });
-    
-            const zones = [{
-                    title: "Turkey",
-                    extent: [17.952, 46.241, 52.449, 31.222]
-                },
-                {
-                    title: "Cyprus",
-                    extent: [31.2836, 36.1623, 35.5957, 34.1823]
-                }, {
-                    title: "Brazil",
-                    extent: [-120.32, 22.76, 17.67, -47.52]
-                }
-            ]
-    
-            const webglPointsStyle = {
-                symbol: {
-                    symbolType: 'circle',
-                    size: [
-                        'interpolate',
-                        ['linear'],
-                        ['get', 'population'],
-                        40000,
-                        8,
-                        2000000,
-                        28,
-                    ],
-                    color: '#ffed02',
-                    rotateWithView: false,
-                    offset: [0, 0],
-                    opacity: [
-                        'interpolate',
-                        ['linear'],
-                        ['get', 'population'],
-                        40000,
-                        0.6,
-                        2000000,
-                        0.92,
-                    ],
-                },
-            }
+
     
             return {
                 center,
@@ -286,11 +202,6 @@
                 vectorsource,
                 view,
                 selectInteactionFilter,
-                drawstart,
-                drawend,
-                modifystart,
-                modifyend,
-                videoStopped,
                 drawEnable,
                 drawType,
                 layerList,
@@ -298,10 +209,7 @@
                 osmLayer,
                 starIcon,
                 changeDrawType,
-                path,
                 animationPath,
-                zones,
-                webglPointsStyle
             }
         },
     }
